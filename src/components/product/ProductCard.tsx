@@ -53,7 +53,7 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         )}
         <span className="flex items-baseline justify-between gap-3">
-          <span className="font-display text-[22px] font-semibold leading-[1.05] text-ivory sm:text-[28px]">{product.name}</span>
+          <span className="font-display text-[22px] font-semibold leading-[1.15] text-ivory sm:text-[28px]">{product.name}</span>
           <span className="hidden shrink-0 text-[11px] font-bold tracking-wider text-dim sm:inline">{product.weight}</span>
         </span>
         <span className="line-clamp-2 text-[12.5px] leading-relaxed text-muted first-letter:uppercase sm:text-[13.5px]">{product.description}</span>

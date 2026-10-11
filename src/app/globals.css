@@ -123,7 +123,8 @@ html.lenis body {
   .display {
     font-family: var(--font-display);
     font-weight: 500;
-    line-height: 0.95;
+    /* Cormorant are diacritice înalte (î, â, ș, ț): sub ~1.05 rândurile se ating */
+    line-height: 1.08;
     letter-spacing: -0.01em;
     color: var(--color-ivory);
   }
@@ -269,9 +270,11 @@ html.lenis body {
   }
 }
 
-.split-line {
-  padding-bottom: 0.06em;
-  margin-bottom: -0.06em;
+/* Masca fiecărui rând (SplitText) taie tot ce iese din rând. O lărgim ca să nu taie
+   accentele de sus (î, â) și cozile de jos (g, j, ș, ț), fără să schimbăm spațierea. */
+.split-line-mask {
+  overflow: visible !important;
+  clip-path: inset(-0.4em -0.6em -0.3em -0.6em);
 }
 
 @utility pb-safe {

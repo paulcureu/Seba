@@ -109,7 +109,7 @@ export default async function ProductPage({ params }: PageProps<"/meniu/[slug]">
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <span className="eyebrow">{cat.label}</span>
-              <SplitHeading as="h1" trigger="load" className="display text-[clamp(2.6rem,10vw,5.75rem)] leading-[0.92] text-balance">
+              <SplitHeading as="h1" trigger="load" className="display text-[clamp(2.6rem,10vw,5.75rem)] leading-[1.06] text-balance">
                 {isPizza ? (
                   <>
                     <em className="text-brass-light">Pizza</em> {product.name}
@@ -135,7 +135,7 @@ export default async function ProductPage({ params }: PageProps<"/meniu/[slug]">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <div className="flex flex-col gap-3.5">
                 <span className="eyebrow text-umber">Ce găsești în farfurie</span>
-                <SplitHeading className="font-display text-[clamp(2.5rem,5vw,4.25rem)] font-medium leading-[0.95]">
+                <SplitHeading className="font-display text-[clamp(2.5rem,5vw,4.25rem)] font-medium leading-[1.08]">
                   {ingredients.length} ingrediente, <em>un singur gust.</em>
                 </SplitHeading>
               </div>
@@ -147,7 +147,7 @@ export default async function ProductPage({ params }: PageProps<"/meniu/[slug]">
               {ingredients.map((g, i) => (
                 <li key={g} data-reveal className="flex flex-col gap-3 border-b border-r border-ink/10 py-7 pr-4">
                   <span className="text-xs font-extrabold tracking-[0.16em] text-umber">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="font-display text-[26px] font-medium leading-[1.05] sm:text-3xl">{capitalize(g)}</span>
+                  <span className="font-display text-[26px] font-medium leading-[1.15] sm:text-3xl">{capitalize(g)}</span>
                 </li>
               ))}
             </ol>

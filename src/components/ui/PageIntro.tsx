@@ -44,7 +44,7 @@ export function PageIntro({
             ))}
           </nav>
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-          <SplitHeading as="h1" trigger="load" className="display text-[clamp(2.6rem,10.5vw,6.75rem)] leading-[0.92] text-balance">
+          <SplitHeading as="h1" trigger="load" className="display text-[clamp(2.6rem,10.5vw,6.75rem)] leading-[1.06] text-balance">
             {title}
           </SplitHeading>
           {children && <div data-reveal className="max-w-xl text-base leading-[1.7] text-soft sm:text-[17px] sm:leading-[1.75]">{children}</div>}

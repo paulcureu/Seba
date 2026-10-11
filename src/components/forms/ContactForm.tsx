@@ -32,7 +32,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={submit} noValidate className="flex flex-col gap-4 rounded-[28px] bg-ink p-6 text-cream sm:p-8">
-      <span className="display text-4xl">Trimite-ne un mesaj</span>
+      <span className="display text-4xl leading-[1.1]">Trimite-ne un mesaj</span>
       {status === "done" && (
         <p role="status" className="flex items-center gap-3 rounded-2xl bg-brass/15 px-4 py-3 text-sm font-bold text-brass-light">
           <CheckIcon className="size-5" /> Mulțumim! Am primit mesajul tău.

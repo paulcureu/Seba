@@ -80,7 +80,7 @@ export function ReservationForm() {
           <span data-step className="flex size-24 items-center justify-center rounded-full bg-brass text-ink">
             <CheckIcon className="size-10" />
           </span>
-          <span data-step className="display text-5xl">Cerere trimisă!</span>
+          <span data-step className="display text-5xl leading-[1.08]">Cerere trimisă!</span>
           <p data-step className="max-w-md text-base leading-relaxed text-soft">
             Am primit cererea ta ({summary}). Revenim cu confirmarea cât mai curând. Pentru ceva urgent, sună la {site.phone}.
           </p>

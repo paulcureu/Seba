@@ -90,7 +90,7 @@ export function Specialties() {
                 <span className="absolute right-4 top-4 font-display text-4xl italic text-cream/80">0{i + 1}</span>
               </span>
               <span className="flex flex-1 flex-col gap-3 p-6 sm:p-7">
-                <span className="font-display text-[34px] font-semibold leading-none text-ivory">{p.name}</span>
+                <span className="font-display text-[34px] font-semibold leading-[1.1] text-ivory">{p.name}</span>
                 <span className="text-sm leading-relaxed text-muted first-letter:uppercase">{p.description}</span>
                 <span className="mt-auto flex items-center justify-between gap-4 border-t border-cream/10 pt-5">
                   <span className="flex flex-col gap-0.5">
@@ -111,7 +111,7 @@ export function Specialties() {
             className="group flex w-[70vw] max-w-[340px] shrink-0 snap-start flex-col justify-between rounded-[28px] bg-brass p-8 text-ink sm:w-[340px]"
           >
             <span className="text-xs font-extrabold uppercase tracking-[0.2em]">Încă 36 de rețete</span>
-            <span className="font-display text-6xl leading-[0.9]">
+            <span className="font-display text-6xl leading-[1.04]">
               Tot <em>meniul</em>
             </span>
             <span className="flex size-16 items-center justify-center rounded-full bg-ink text-cream transition-transform duration-500 group-hover:rotate-45">

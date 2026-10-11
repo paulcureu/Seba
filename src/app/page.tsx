@@ -143,7 +143,7 @@ export default function HomePage() {
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="flex max-w-2xl flex-col gap-4">
               <span className="eyebrow text-umber">05 — Pachete</span>
-              <SplitHeading className="font-display text-[clamp(2.5rem,5vw,4.25rem)] font-medium leading-[0.95] text-ink">
+              <SplitHeading className="font-display text-[clamp(2.5rem,5vw,4.25rem)] font-medium leading-[1.08] text-ink">
                 Mai mulți la masă, <em>preț mai bun.</em>
               </SplitHeading>
             </div>
@@ -166,7 +166,7 @@ export default function HomePage() {
           <ScrubWords
             as="blockquote"
             text="„Locație vintage, atmosferă relaxantă și ambianța potrivită pentru familii.”"
-            className="font-display text-[clamp(2.25rem,5vw,4.25rem)] italic leading-[1.08] text-ivory"
+            className="font-display text-[clamp(2.25rem,5vw,4.25rem)] italic leading-[1.16] text-ivory"
           />
           <Magnetic>
             <Link href="/rezervari" className="btn bg-cream text-ink hover:bg-white">

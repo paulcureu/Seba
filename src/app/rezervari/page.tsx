@@ -16,7 +16,7 @@ export default function ReservationsPage() {
     <section className="container-x grid grid-cols-1 items-start gap-10 pb-24 pt-10 md:pt-16 lg:grid-cols-[0.9fr_1.2fr] lg:gap-14 lg:pb-32">
       <div className="flex flex-col gap-6 lg:sticky lg:top-28">
         <span className="eyebrow">Rezervări</span>
-        <SplitHeading as="h1" trigger="load" className="display text-[clamp(3.25rem,7vw,6rem)] leading-[0.9]">
+        <SplitHeading as="h1" trigger="load" className="display text-[clamp(3.25rem,7vw,6rem)] leading-[1.06]">
           O masă <em className="text-brass-light">pentru tine.</em>
         </SplitHeading>
         <p data-reveal className="text-[17px] leading-[1.75] text-soft">

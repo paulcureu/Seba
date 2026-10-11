@@ -189,7 +189,7 @@ export function ProductModal() {
             <div data-stagger>
               <TagBadges product={product} />
             </div>
-            <h2 data-stagger className="display text-[40px] leading-[0.95] sm:text-[56px]">
+            <h2 data-stagger className="display text-[40px] leading-[1.06] sm:text-[56px]">
               {isPizza ? (
                 <>
                   <span className="text-brass-light italic">Pizza</span> {product.name}

@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="relative overflow-hidden border-t border-cream/10 bg-ink-deep pb-28 lg:pb-10">
       <div className="container-x flex flex-col gap-16 pt-20">
         <div className="flex flex-col items-start justify-between gap-8 border-b border-cream/10 pb-14 md:flex-row md:items-end">
-          <h2 className="display max-w-2xl text-5xl md:text-7xl">
+          <h2 className="display max-w-2xl text-5xl leading-[1.08] md:text-7xl md:leading-[1.06]">
             Ți-e poftă de <em className="text-brass-light">ceva bun?</em>
           </h2>
           <div className="flex flex-wrap gap-3">

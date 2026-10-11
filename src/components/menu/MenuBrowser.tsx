@@ -146,7 +146,7 @@ export function MenuBrowser() {
 
         {items.length === 0 && (
           <div className="flex flex-col items-center gap-2.5 rounded-3xl border border-dashed border-cream/20 px-6 py-16 text-center">
-            <span className="display text-3xl">Nimic găsit pentru „{q}”</span>
+            <span className="display text-3xl leading-[1.15]">Nimic găsit pentru „{q}”</span>
             <span className="text-[15px] text-muted">Încearcă un ingredient, de exemplu „hribi” sau „gorgonzola”.</span>
           </div>
         )}

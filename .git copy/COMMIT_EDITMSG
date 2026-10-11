@@ -1,11 +1,8 @@
-Mobil: fără scroll orizontal pe iPhone, experiență premium pe telefon
+Titluri: spațiere corectă între rânduri, fără suprapuneri la diacritice
 
-- coșul (panou lateral) nu mai lărgește pagina pe iOS; html/body taie orice depășire
-- hero nou pe mobil: titlu echilibrat, pizza imediat sub titlu, butoane pe toată lățimea
-- carduri compacte în meniu pe telefon, bara de categorii urcă la rezultate
-- fereastra produsului: se închide trăgând în jos, buton de adăugare pe un singur rând
-- bară fixă „Plasează comanda” pe telefon, zone sigure iPhone (notch, bara de jos)
-- câmpuri de 16px (fără zoom automat pe iPhone), feedback la atingere, fără hover lipicios
+- line-height mărit pentru titlurile Cormorant (î, â, ș, ț nu se mai ating de rândul de sus/jos)
+- masca animației SplitText nu mai taie accentele și cozile literelor
+- reparate titlurile cu dimensiuni Tailwind care forțau line-height 1
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_012xZpvtv4jrJnS9HnJS983Z

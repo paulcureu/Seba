@@ -74,7 +74,7 @@ export function Hero() {
             as="h1"
             trigger="load"
             delay={0.2}
-            className="display text-[clamp(2.6rem,11.4vw,5.5rem)] leading-[0.92] tracking-[-0.015em] text-balance lg:text-[clamp(4.5rem,7.3vw,7.25rem)] lg:leading-[0.9]"
+            className="display text-[clamp(2.6rem,11.4vw,5.5rem)] leading-[1.06] tracking-[-0.01em] text-balance lg:text-[clamp(4.5rem,7.3vw,7.25rem)] lg:leading-[1.04]"
           >
             Rețete din Puglia, <em className="text-brass-light">coapte în Cluj.</em>
           </SplitHeading>

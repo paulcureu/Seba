@@ -34,7 +34,7 @@ export default function AboutPage() {
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div className="flex max-w-4xl flex-col gap-5">
             <span className="eyebrow">Despre noi</span>
-            <SplitHeading as="h1" trigger="load" className="display text-[clamp(3.5rem,9vw,8rem)] leading-[0.88] tracking-[-0.02em]">
+            <SplitHeading as="h1" trigger="load" className="display text-[clamp(3.5rem,9vw,8rem)] leading-[1.04] tracking-[-0.015em]">
               De la Puglia <em className="text-brass-light">la Mureșului 14.</em>
             </SplitHeading>
           </div>
@@ -72,7 +72,7 @@ export default function AboutPage() {
               <span className="w-14 shrink-0 font-display text-5xl leading-[0.9] text-brass md:w-20 md:text-6xl">{c.n}</span>
               <span className="flex flex-col gap-2.5">
                 <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-muted">{c.kicker}</span>
-                <span className="font-display text-[30px] font-semibold leading-[1.05] text-ivory md:text-[34px]">{c.title}</span>
+                <span className="font-display text-[30px] font-semibold leading-[1.15] text-ivory md:text-[34px]">{c.title}</span>
                 <span className="text-base leading-[1.75] text-soft">{c.text}</span>
               </span>
             </li>
@@ -84,7 +84,7 @@ export default function AboutPage() {
         <div className="container-x flex flex-col gap-14">
           <div className="flex flex-col items-center gap-4 text-center">
             <span className="eyebrow text-umber">În ce credem</span>
-            <SplitHeading className="font-display text-[clamp(2.5rem,5vw,4.25rem)] font-medium leading-[0.95]">
+            <SplitHeading className="font-display text-[clamp(2.5rem,5vw,4.25rem)] font-medium leading-[1.08]">
               Trei lucruri <em>pe care nu le negociem.</em>
             </SplitHeading>
           </div>
@@ -133,7 +133,7 @@ export default function AboutPage() {
         <ScrubWords
           as="h2"
           text="Aproape de cartierele noi, de zona de birouri Iulius Mall și de campusul studențesc — aproape de oamenii pe care îi hrănim."
-          className="display max-w-5xl text-[clamp(2.25rem,4.6vw,4rem)] leading-[1.05]"
+          className="display max-w-5xl text-[clamp(2.25rem,4.6vw,4rem)] leading-[1.14]"
         />
       </section>
 

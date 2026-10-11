@@ -35,7 +35,8 @@ export function SplitHeading({ as = "h2", className, children, trigger = "scroll
             onSplit(self) {
               gsap.set(el, { visibility: "visible" });
               return gsap.from(self.lines, {
-                yPercent: 115,
+                yPercent: 140,
+                opacity: 0,
                 duration: 1.15,
                 stagger: 0.1,
                 ease: "expo.out",
