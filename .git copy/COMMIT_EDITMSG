@@ -1,0 +1,8 @@
+Site Pizza Seba: Next.js 16 + GSAP
+
+Pagini: acasă, meniu cu detalii produs, pagini produs, coș și finalizare comandă,
+despre, rezervări, contact, pagini legale. Animații GSAP (SplitText, ScrollTrigger),
+smooth scroll Lenis, responsive pe mobil, gata de deploy pe Vercel.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012xZpvtv4jrJnS9HnJS983Z
