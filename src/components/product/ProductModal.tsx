@@ -71,6 +71,57 @@ export function ProductModal() {
     };
   }, [product, close]);
 
+  // Pe telefon: tragi fereastra în jos ca s-o închizi (ca un „bottom sheet” nativ)
+  useEffect(() => {
+    const panel = panelRef.current;
+    const root = rootRef.current;
+    if (!product || !panel || !root) return;
+    if (!window.matchMedia("(max-width: 639px)").matches) return;
+    let startY = 0;
+    let startT = 0;
+    let dy = 0;
+    let dragging = false;
+    const onStart = (e: TouchEvent) => {
+      if (panel.scrollTop > 2) return;
+      startY = e.touches[0].clientY;
+      startT = performance.now();
+      dy = 0;
+      dragging = true;
+    };
+    const onMove = (e: TouchEvent) => {
+      if (!dragging) return;
+      dy = e.touches[0].clientY - startY;
+      if (dy <= 0 || panel.scrollTop > 2) {
+        if (dy < 0) dragging = false;
+        return;
+      }
+      e.preventDefault();
+      gsap.set(panel, { y: dy * 0.85 });
+      gsap.set(root, { backgroundColor: `rgba(0,0,0,${Math.max(0.25, 0.75 - dy / 900)})` });
+    };
+    const onEnd = () => {
+      if (!dragging) return;
+      dragging = false;
+      const velocity = dy / Math.max(1, performance.now() - startT);
+      if (dy > 120 || (dy > 40 && velocity > 0.6)) {
+        close();
+      } else {
+        gsap.to(panel, { y: 0, duration: 0.45, ease: "expo.out" });
+        gsap.to(root, { backgroundColor: "rgba(0,0,0,0.75)", duration: 0.3 });
+      }
+    };
+    panel.addEventListener("touchstart", onStart, { passive: true });
+    panel.addEventListener("touchmove", onMove, { passive: false });
+    panel.addEventListener("touchend", onEnd);
+    panel.addEventListener("touchcancel", onEnd);
+    return () => {
+      panel.removeEventListener("touchstart", onStart);
+      panel.removeEventListener("touchmove", onMove);
+      panel.removeEventListener("touchend", onEnd);
+      panel.removeEventListener("touchcancel", onEnd);
+    };
+  }, [product, close]);
+
   if (!product) return null;
 
   const isPizza = product.category === "pizza";
@@ -81,7 +132,7 @@ export function ProductModal() {
       role="dialog"
       aria-modal="true"
       aria-label={product.name}
-      className="fixed inset-0 z-[70] flex items-end justify-center bg-black/75 backdrop-blur-sm sm:items-center sm:p-6"
+      className="fixed inset-0 z-[70] flex items-end justify-center overflow-hidden bg-black/75 backdrop-blur-sm sm:items-center sm:p-6"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) close();
       }}
@@ -89,10 +140,10 @@ export function ProductModal() {
       <div
         ref={panelRef}
         data-lenis-prevent
-        className="relative grid max-h-[94dvh] w-full max-w-[1140px] overflow-y-auto overscroll-contain rounded-t-[28px] border border-cream/10 bg-overlay shadow-[0_40px_120px_rgba(0,0,0,0.6)] sm:max-h-[90dvh] sm:rounded-[30px] lg:grid-cols-[1fr_1.05fr]"
+        className="relative grid max-h-[92dvh] w-full max-w-[1140px] overflow-y-auto overscroll-contain rounded-t-[28px] border border-cream/10 bg-overlay shadow-[0_40px_120px_rgba(0,0,0,0.6)] sm:max-h-[90dvh] sm:rounded-[30px] lg:grid-cols-[1fr_1.05fr]"
       >
         <div className="sticky top-0 z-20 col-span-full flex h-0 justify-end">
-          <span aria-hidden className="absolute left-1/2 top-2.5 h-1 w-10 -translate-x-1/2 rounded-full bg-cream/30 sm:hidden" />
+          <span aria-hidden className="absolute left-1/2 top-2.5 z-10 h-1 w-10 -translate-x-1/2 rounded-full bg-cream/50 sm:hidden" />
           <button
             ref={closeRef}
             type="button"
@@ -109,7 +160,7 @@ export function ProductModal() {
             <ProductVisual product={product} sizes="(min-width: 1024px) 560px, 100vw" zoom={1.12} large />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-ink" />
           </div>
-          <div className="flex flex-col gap-3.5 px-6 pb-7 pt-2 sm:px-8">
+          <div className="hidden flex-col gap-3.5 px-5 pb-6 pt-2 sm:flex sm:px-8 sm:pb-7">
             <span className="label">{product.category === "bauturi" ? "Detalii" : product.category === "pachete" ? "Conține" : "Ingrediente"}</span>
             <div className="flex flex-wrap gap-2">
               {ingredientsOf(product).map((g) => (
@@ -133,12 +184,12 @@ export function ProductModal() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 p-6 sm:p-10">
-          <div className="flex flex-col gap-3.5 pr-12">
+        <div className="flex flex-col gap-7 px-5 pb-6 pt-6 sm:p-10">
+          <div className="flex flex-col gap-3 sm:gap-3.5 sm:pr-12">
             <div data-stagger>
               <TagBadges product={product} />
             </div>
-            <h2 data-stagger className="display text-5xl sm:text-[56px]">
+            <h2 data-stagger className="display text-[40px] leading-[0.95] sm:text-[56px]">
               {isPizza ? (
                 <>
                   <span className="text-brass-light italic">Pizza</span> {product.name}
@@ -147,9 +198,15 @@ export function ProductModal() {
                 product.name
               )}
             </h2>
-            <p data-stagger className="text-[15.5px] leading-relaxed text-soft">
+            <p data-stagger className="text-[15px] leading-relaxed text-soft sm:text-[15.5px]">
               {isPizza ? `Coaptă la cuptor, cu ${product.description}.` : capitalize(product.description)}
             </p>
+            <div data-stagger className="flex items-center gap-4 text-[13px] sm:hidden">
+              <span className="rounded-full bg-panel px-3 py-1.5 font-bold text-ivory">{product.weight}</span>
+              <Link href={`/meniu/${product.slug}`} className="inline-flex items-center gap-1 font-bold text-brass-light">
+                Pagina produsului <ArrowUpRight className="size-3.5" />
+              </Link>
+            </div>
           </div>
           <div data-stagger>
             <ProductConfigurator key={product.slug} product={product} onAdded={close} />

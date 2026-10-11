@@ -31,7 +31,16 @@
     background: var(--color-ink);
     color: var(--color-cream);
     -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    /* Nimic nu are voie să lărgească pagina pe telefon (iOS nu taie singur ce iese în afară) */
+    overflow-x: hidden;
+  }
+  @supports (overflow: clip) {
+    html {
+      overflow-x: clip;
+    }
   }
 
   body {
@@ -39,6 +48,17 @@
     background: var(--color-ink);
     min-height: 100dvh;
     overflow-x: clip;
+  }
+
+  a,
+  button,
+  label,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+
+  img {
+    -webkit-user-drag: none;
   }
 
   ::selection {
@@ -82,11 +102,13 @@ html.lenis body {
     width: 100%;
     max-width: 1320px;
     margin-inline: auto;
-    padding-inline: 1.25rem;
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
   }
   @media (min-width: 768px) {
     .container-x {
-      padding-inline: 2rem;
+      padding-left: max(2rem, env(safe-area-inset-left));
+      padding-right: max(2rem, env(safe-area-inset-right));
     }
   }
 
@@ -124,28 +146,39 @@ html.lenis body {
       border-color 0.3s,
       transform 0.3s var(--ease-out-expo);
     white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .btn:active {
+    transform: scale(0.97);
   }
   .btn-primary {
     background: var(--color-brass);
     color: var(--color-ink);
   }
-  .btn-primary:hover {
-    background: var(--color-brass-light);
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background: var(--color-brass-light);
+    }
   }
   .btn-ghost {
     border: 1px solid rgb(239 232 218 / 0.35);
     color: var(--color-cream);
   }
-  .btn-ghost:hover {
-    border-color: var(--color-brass);
-    color: var(--color-brass-light);
+  @media (hover: hover) {
+    .btn-ghost:hover {
+      border-color: var(--color-brass);
+      color: var(--color-brass-light);
+    }
   }
   .btn-dark {
     background: var(--color-ink);
     color: var(--color-cream);
   }
-  .btn-dark:hover {
-    background: #1d2a24;
+  @media (hover: hover) {
+    .btn-dark:hover {
+      background: #1d2a24;
+    }
   }
 
   .chip {
@@ -162,10 +195,16 @@ html.lenis body {
     transition:
       background-color 0.25s,
       border-color 0.25s,
-      color 0.25s;
+      color 0.25s,
+      transform 0.25s var(--ease-out-expo);
   }
-  .chip:hover {
-    border-color: rgb(201 164 106 / 0.6);
+  .chip:active {
+    transform: scale(0.96);
+  }
+  @media (hover: hover) {
+    .chip:hover {
+      border-color: rgb(201 164 106 / 0.6);
+    }
   }
   .chip[aria-pressed="true"] {
     background: var(--color-brass);
@@ -182,7 +221,8 @@ html.lenis body {
     border: 1px solid rgb(239 232 218 / 0.16);
     background: var(--color-ink);
     color: var(--color-ivory);
-    font-size: 0.95rem;
+    /* 16px: altfel iPhone face zoom automat când atingi câmpul */
+    font-size: 1rem;
     transition: border-color 0.2s;
   }
   .field:focus {
@@ -232,6 +272,17 @@ html.lenis body {
 .split-line {
   padding-bottom: 0.06em;
   margin-bottom: -0.06em;
+}
+
+@utility pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@utility press {
+  transition: transform 0.25s var(--ease-out-expo);
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
 @utility no-scrollbar {

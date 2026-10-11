@@ -52,12 +52,12 @@ export function CartDrawer() {
   return (
     <div
       ref={rootRef}
-      className="invisible fixed inset-0 z-[65] flex justify-end bg-black/65 backdrop-blur-[2px]"
+      className="invisible fixed inset-0 z-[65] flex justify-end overflow-hidden bg-black/65 backdrop-blur-[2px]"
       onMouseDown={(e) => e.target === e.currentTarget && closeDrawer()}
       aria-hidden={!drawerOpen}
     >
       <aside ref={panelRef} aria-label="Coșul tău" className="flex h-full w-full max-w-[470px] flex-col border-l border-cream/10 bg-overlay">
-        <div className="flex items-center justify-between border-b border-cream/[0.08] px-6 pb-5 pt-6 sm:px-7">
+        <div className="flex items-center justify-between border-b border-cream/[0.08] px-6 pb-5 pt-[max(1.5rem,env(safe-area-inset-top))] sm:px-7">
           <div className="flex flex-col gap-1">
             <span className="display text-4xl">Coșul tău</span>
             <span className="text-[13px] text-muted">
@@ -122,7 +122,7 @@ export function CartDrawer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2.5 border-t border-cream/10 bg-ink px-6 pb-7 pt-5 sm:px-7">
+        <div className="flex flex-col gap-2.5 border-t border-cream/10 bg-ink px-6 pb-[max(1.75rem,env(safe-area-inset-bottom))] pt-5 sm:px-7">
           <div className="flex justify-between text-sm text-soft">
             <span>Subtotal</span>
             <span>{formatPrice(subtotal)}</span>

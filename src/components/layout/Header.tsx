@@ -61,7 +61,12 @@ export function Header() {
     if (open) {
       lockScroll();
       tl.current.timeScale(1).play();
-      return () => unlockScroll();
+      const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+      window.addEventListener("keydown", onKey);
+      return () => {
+        window.removeEventListener("keydown", onKey);
+        unlockScroll();
+      };
     }
     tl.current.timeScale(1.6).reverse();
   }, [open]);
@@ -158,7 +163,7 @@ export function Header() {
       <div
         ref={menuRef}
         id="meniu-mobil"
-        className="invisible fixed inset-0 z-[45] flex flex-col justify-between bg-ink px-5 pb-10 pt-28 lg:hidden"
+        className="invisible fixed inset-0 z-[45] flex flex-col justify-between gap-10 overflow-y-auto overscroll-contain bg-ink px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-28 lg:hidden"
         aria-hidden={!open}
         data-lenis-prevent
       >

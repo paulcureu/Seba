@@ -15,7 +15,7 @@ export function Toast() {
   }, [toast]);
 
   return (
-    <div aria-live="polite" className="pointer-events-none fixed inset-x-0 top-4 z-[80] flex justify-center px-4">
+    <div aria-live="polite" className="pointer-events-none fixed inset-x-0 top-[max(1rem,env(safe-area-inset-top))] z-[80] flex justify-center px-4">
       {toast && (
         <div
           key={toast.key}
@@ -24,7 +24,7 @@ export function Toast() {
           className="pointer-events-auto flex items-center gap-3 rounded-full bg-brass py-2 pl-4 pr-2 text-sm font-bold text-ink shadow-[0_16px_40px_rgba(0,0,0,0.4)]"
         >
           <CheckIcon className="size-[18px] shrink-0" />
-          <span className="line-clamp-1">{toast.text}</span>
+          <span className="line-clamp-1 min-w-0">{toast.text}</span>
           <button type="button" onClick={openDrawer} className="h-9 shrink-0 rounded-full bg-ink px-4 text-[11px] font-extrabold uppercase tracking-[0.1em] text-cream">
             Vezi coșul
           </button>

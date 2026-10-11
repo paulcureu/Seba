@@ -85,7 +85,7 @@ export default async function ProductPage({ params }: PageProps<"/meniu/[slug]">
               <span className="absolute left-5 top-5">
                 <TagBadges product={product} />
               </span>
-              {isPizza && (
+              {isPizza && product.imageKind === "photo" && (
                 <span className="absolute bottom-5 right-5 flex size-28 flex-col items-center justify-center rounded-full bg-brass text-center text-ink sm:size-32">
                   <span className="text-[10px] font-extrabold uppercase tracking-[0.16em]">Mărimea mare</span>
                   <span className="font-display text-4xl font-semibold leading-none">900 g</span>
@@ -109,7 +109,7 @@ export default async function ProductPage({ params }: PageProps<"/meniu/[slug]">
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <span className="eyebrow">{cat.label}</span>
-              <SplitHeading as="h1" trigger="load" className="display text-[clamp(3.25rem,7vw,5.75rem)] leading-[0.92]">
+              <SplitHeading as="h1" trigger="load" className="display text-[clamp(2.6rem,10vw,5.75rem)] leading-[0.92] text-balance">
                 {isPizza ? (
                   <>
                     <em className="text-brass-light">Pizza</em> {product.name}

@@ -70,7 +70,7 @@ export function Specialties() {
         </div>
       </div>
 
-      <div className="no-scrollbar mt-10 snap-x snap-mandatory overflow-x-auto overscroll-x-contain lg:mt-14 lg:snap-none lg:overflow-visible">
+      <div className="no-scrollbar mt-10 snap-x snap-mandatory scroll-pl-5 overflow-x-auto overscroll-x-contain md:scroll-pl-8 lg:mt-14 lg:snap-none lg:overflow-visible">
         <div data-track className="flex w-max gap-4 px-5 md:gap-6 md:px-8 lg:pl-[max(2rem,calc((100vw-1320px)/2+2rem))] lg:pr-[8vw]">
           {items.map((p, i) => (
             <button

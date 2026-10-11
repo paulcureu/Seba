@@ -49,9 +49,9 @@ export function ProductVisual({
           <Image src={product.image} alt="" fill sizes={sizes} className="object-cover opacity-55" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 flex items-end gap-3 p-5 text-ivory">
-          <span className={`font-display leading-[0.8] ${large ? "text-[9rem]" : "text-8xl"}`}>{product.packCount}</span>
-          <span className="flex flex-col pb-2 text-xs font-extrabold uppercase tracking-[0.16em]">
+        <div className="absolute inset-x-0 bottom-0 flex items-end gap-3 p-3 text-ivory sm:p-5">
+          <span className={`font-display leading-[0.8] ${large ? "text-[7rem] sm:text-[9rem]" : "text-6xl sm:text-8xl"}`}>{product.packCount}</span>
+          <span className={`flex-col pb-2 text-xs font-extrabold uppercase tracking-[0.16em] ${large ? "flex" : "hidden sm:flex"}`}>
             Pizza
             <span className="text-[13px] font-semibold normal-case tracking-normal text-brass-light">+ {product.packExtras}</span>
           </span>
@@ -61,10 +61,10 @@ export function ProductVisual({
   }
   const Icon = product.category === "bauturi" ? BottleIcon : PizzaIcon;
   return (
-    <div className="flex size-full flex-col items-center justify-center gap-3 bg-panel-2 p-5 text-center">
-      <Icon className={large ? "size-16 text-brass" : "size-10 text-brass"} />
-      <span className={`font-display italic leading-tight text-brass-light ${large ? "text-4xl" : "text-[26px]"}`}>{product.name}</span>
-      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-dim">Foto în curând</span>
+    <div className="flex size-full flex-col items-center justify-center gap-2 bg-panel-2 p-3 text-center sm:gap-3 sm:p-5">
+      <Icon className={large ? "size-16 text-brass" : "size-8 text-brass sm:size-10"} />
+      <span className={`font-display italic leading-tight text-brass-light ${large ? "text-4xl" : "hidden text-[26px] sm:block"}`}>{product.name}</span>
+      <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-dim sm:text-[10px] sm:tracking-[0.2em]">Foto în curând</span>
     </div>
   );
 }

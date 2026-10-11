@@ -13,7 +13,8 @@ export function ScrubWords({ text, as = "p", className }: { text: string; as?: "
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
         let split: SplitText | undefined;
-        document.fonts.ready.then(() => {
+        // Așteptăm fonturile (max. 1,2 s), ca rândurile să fie împărțite corect
+        Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1200))]).then(() => {
           if (!el.isConnected) return;
           split = SplitText.create(el, {
             type: "words",

@@ -25,7 +25,7 @@ export function MobileCartBar() {
       ref={ref}
       type="button"
       onClick={openDrawer}
-      className="fixed inset-x-3 bottom-3 z-40 flex items-center gap-3 rounded-full bg-cream py-2 pl-5 pr-2 text-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 lg:hidden"
+      className="press fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 flex items-center gap-3 rounded-full bg-cream py-2 pl-5 pr-2 text-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:inset-x-auto sm:left-1/2 sm:min-w-[420px] sm:-translate-x-1/2 lg:hidden"
     >
       <BagIcon className="size-5" />
       <span className="text-sm font-bold">

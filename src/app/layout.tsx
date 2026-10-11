@@ -57,6 +57,8 @@ export const viewport: Viewport = {
   themeColor: "#0d1411",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
+  colorScheme: "dark",
 };
 
 const restaurantJsonLd = {

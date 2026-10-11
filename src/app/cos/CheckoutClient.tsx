@@ -125,7 +125,7 @@ export function CheckoutClient() {
   }
 
   return (
-    <form onSubmit={submit} noValidate className="container-x grid grid-cols-1 items-start gap-8 pb-28 pt-10 md:pt-14 lg:grid-cols-[1fr_400px] lg:gap-10">
+    <form onSubmit={submit} noValidate className="container-x grid grid-cols-1 items-start gap-8 pb-32 pt-8 md:pt-14 lg:grid-cols-[1fr_400px] lg:gap-10">
       <div className="flex min-w-0 flex-col gap-6">
         <div className="flex flex-col gap-3">
           <span className="eyebrow">Finalizează comanda</span>
@@ -161,14 +161,15 @@ export function CheckoutClient() {
               </div>
             </div>
           ))}
-          <div className="flex flex-wrap items-center gap-2.5 py-5">
-            <span className="mr-1 text-xs font-extrabold uppercase tracking-[0.18em] text-brass-light">Adaugă rapid</span>
+          <span className="block pt-5 text-xs font-extrabold uppercase tracking-[0.18em] text-brass-light sm:hidden">Adaugă rapid</span>
+          <div className="no-scrollbar -mx-5 flex items-center gap-2.5 overflow-x-auto overscroll-x-contain px-5 py-4 sm:mx-0 sm:flex-wrap sm:px-0 sm:py-5">
+            <span className="mr-1 hidden text-xs font-extrabold uppercase tracking-[0.18em] text-brass-light sm:inline">Adaugă rapid</span>
             {quick.map((q) => (
               <button
                 key={q.slug}
                 type="button"
                 onClick={() => add({ slug: q.slug, name: q.name, image: q.image, imageKind: q.imageKind, unit: q.price, qty: 1, details: q.detail ? [q.detail] : [] })}
-                className="chip h-11"
+                className="chip h-11 shrink-0 whitespace-nowrap"
               >
                 <PlusIcon className="size-3 text-brass" />
                 {q.name} <span className="font-extrabold text-brass">{q.price} lei</span>
@@ -349,6 +350,21 @@ export function CheckoutClient() {
           .
         </span>
       </aside>
+
+      {/* Bară fixă pe telefon: totalul + trimitere, mereu la îndemână */}
+      {lines.length > 0 && (
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-ink/92 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl lg:hidden">
+          <div className="mx-auto flex max-w-xl items-center gap-3">
+            <span className="flex flex-col">
+              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted">Total</span>
+              <span className="font-display text-[28px] font-semibold leading-none text-ivory">{formatPrice(total)}</span>
+            </span>
+            <button type="submit" disabled={status === "sending"} className="btn btn-primary min-h-[52px] flex-1 px-4 text-[13px] disabled:opacity-60">
+              {status === "sending" ? "Se trimite…" : "Plasează comanda"}
+            </button>
+          </div>
+        </div>
+      )}
     </form>
   );
 }

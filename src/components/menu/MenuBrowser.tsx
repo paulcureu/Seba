@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { ProductCard } from "@/components/product/ProductCard";
 import { SearchIcon } from "@/components/ui/icons";
+import { getLenis } from "@/lib/scroll";
 
 type PizzaFilter = (typeof pizzaFilters)[number]["id"];
 
@@ -56,7 +57,18 @@ export function MenuBrowser() {
     { scope: gridRef, dependencies: [cat, filter, q], revertOnUpdate: true },
   );
 
-  const chooseCat = (c: Category) => {
+  const listRef = useRef<HTMLElement>(null);
+
+  const chooseCat = (c: Category, tab?: HTMLElement) => {
+    tab?.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+    // Dacă ești mai jos în listă, urcă la începutul rezultatelor
+    const list = listRef.current;
+    if (list && list.getBoundingClientRect().top < 0) {
+      const lenis = getLenis();
+      const y = list.getBoundingClientRect().top + window.scrollY - 130;
+      if (lenis) lenis.scrollTo(y, { duration: 0.8 });
+      else window.scrollTo({ top: y, behavior: "smooth" });
+    }
     setCat(c);
     setFilter("toate");
     setQ("");
@@ -77,13 +89,13 @@ export function MenuBrowser() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="ex: gorgonzola, hribi, Diavola"
-            className="h-full min-w-0 flex-1 bg-transparent text-[15px] text-ivory outline-none"
+            className="h-full min-w-0 flex-1 bg-transparent text-base text-ivory outline-none"
           />
         </div>
       </div>
 
       <div className="sticky top-[72px] z-30 mt-6 border-y border-cream/[0.08] bg-ink/90 backdrop-blur-xl transition-[top] duration-500 md:top-[84px] [html[data-header=hidden]_&]:top-0">
-        <div role="tablist" aria-label="Categorii" className="no-scrollbar container-x flex gap-2.5 overflow-x-auto py-3.5">
+        <div role="tablist" aria-label="Categorii" className="no-scrollbar container-x flex snap-x gap-2 overflow-x-auto overscroll-x-contain scroll-px-5 py-3 sm:gap-2.5 sm:py-3.5 [mask-image:linear-gradient(90deg,#000_88%,transparent)] md:[mask-image:none]">
           {categories.map((c) => {
             const on = c.id === cat && !q;
             return (
@@ -92,8 +104,8 @@ export function MenuBrowser() {
                 type="button"
                 role="tab"
                 aria-selected={on}
-                onClick={() => chooseCat(c.id)}
-                className={`flex h-11 shrink-0 items-center gap-2 rounded-full border px-4 text-[13px] font-bold uppercase tracking-[0.08em] transition-colors ${
+                onClick={(e) => chooseCat(c.id, e.currentTarget)}
+                className={`press flex h-11 shrink-0 snap-start items-center gap-2 rounded-full border px-4 text-[13px] font-bold uppercase tracking-[0.08em] transition-colors ${
                   on ? "border-cream bg-cream text-ink" : "border-cream/20 text-cream hover:border-cream/50"
                 }`}
               >
@@ -105,7 +117,7 @@ export function MenuBrowser() {
         </div>
       </div>
 
-      <section className="container-x flex flex-col gap-8 pb-28 pt-12 md:pt-14">
+      <section ref={listRef} className="container-x flex flex-col gap-6 pb-28 pt-9 sm:gap-8 md:pt-14">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-2.5">
             <span className="eyebrow">{q ? "Rezultate" : meta.kicker}</span>
@@ -126,7 +138,7 @@ export function MenuBrowser() {
           </div>
         )}
 
-        <div ref={gridRef} className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+        <div ref={gridRef} className="grid gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
           {items.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}

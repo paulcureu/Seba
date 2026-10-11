@@ -127,7 +127,7 @@ export function ProductConfigurator({
             {(
               [
                 { key: "mica", label: `${product.smallWeight} g`, price: product.price, sub: "Mărime normală" },
-                { key: "mare", label: "900 g", price: product.priceLarge ?? product.price, sub: `Mărime mare · +${(product.priceLarge ?? 0) - product.price} lei` },
+                { key: "mare", label: "900 g", price: product.priceLarge ?? product.price, sub: "Mărime mare" },
               ] as const
             ).map((z) => {
               const on = size === z.key;
@@ -236,7 +236,7 @@ export function ProductConfigurator({
       <div
         className={
           variant === "modal"
-            ? "sticky bottom-0 -mx-6 -mb-6 flex flex-wrap items-center gap-3 border-t border-cream/10 bg-overlay/95 px-6 py-4 backdrop-blur sm:-mx-10 sm:-mb-10 sm:px-10"
+            ? "sticky bottom-0 -mx-5 -mb-6 flex items-center gap-3 border-t border-cream/10 bg-overlay/95 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3.5 backdrop-blur-xl sm:-mx-10 sm:-mb-10 sm:px-10 sm:py-4"
             : "flex flex-col gap-4 rounded-3xl border border-cream/10 bg-panel p-5 sm:p-6"
         }
       >
@@ -246,10 +246,12 @@ export function ProductConfigurator({
             <span className="whitespace-nowrap font-bold text-ivory">{formatPrice(unit)} / buc.</span>
           </div>
         )}
-        <div className="flex w-full flex-wrap items-center gap-3">
-          <QtyStepper value={qty} onChange={setQty} />
-          <button type="button" onClick={handleAdd} className="btn btn-primary min-h-14 flex-1 justify-between px-6 text-sm">
-            <span>Adaugă în coș</span>
+        <div className={`flex w-full items-center gap-2.5 sm:gap-3 ${variant === "page" ? "flex-wrap" : ""}`}>
+          <QtyStepper value={qty} onChange={setQty} size={variant === "modal" ? "sm" : "md"} />
+          <button type="button" onClick={handleAdd} className="btn btn-primary min-h-[52px] min-w-0 flex-1 justify-between gap-2 px-5 text-[13px] sm:min-h-14 sm:px-6 sm:text-sm">
+            <span>
+              Adaugă<span className="hidden min-[400px]:inline"> în coș</span>
+            </span>
             <span className="text-base tracking-normal">{formatPrice(unit * qty)}</span>
           </button>
         </div>
